@@ -34,12 +34,17 @@
             <dependency>
                 <groupId>dk.sdu.mmmi.cbse</groupId>
                 <artifactId>shadedlibgdx</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
+                <version>1.0.31</version>
             </dependency>
         </dependencies>
-    </dependencyManagement>    
+    </dependencyManagement>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.15.0</version>
+            </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.2.0</version>
@@ -155,6 +160,15 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+          <id>github</id>
+          <repositories>
+          <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/ratgen/*</url>
+          </repository>
+        </repositories>
         </profile>
     </profiles>
 </project>
