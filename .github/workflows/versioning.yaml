@@ -1,0 +1,19 @@
+name: CI with Versioning and Maven
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  increment_version:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Increment version
+      id: increment-version
+      uses: RichardInnocent/semantic-versioning-maven@v0.0.36
+      with:
+        access-token: ${{ secrets.GITHUB_TOKEN }}
+    - run: mvn versions:update-child-modules
+    - uses: stefanzweifel/git-auto-commit-action@v4
+

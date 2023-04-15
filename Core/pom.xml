@@ -5,11 +5,10 @@
     <parent>
         <groupId>dk.sdu.mmmi.cbse</groupId>
         <artifactId>asteroids.jpms</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.2</version>
     </parent>
     <groupId>dk.sdu.cbse.asteroids</groupId>
     <artifactId>Core</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Core</name>
