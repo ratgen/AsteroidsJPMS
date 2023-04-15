@@ -1,6 +1,13 @@
-name: CI with Versioning and Maven
+name: Java CI with Maven
 
-on: [push, pull_request, workflow_dispatch]
+on: 
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
 
 jobs:
   increment_version:
@@ -8,12 +15,27 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Increment version
-      id: increment-version
-      uses: RichardInnocent/semantic-versioning-maven@v0.0.36
+    - uses: actions/checkout@v3
       with:
-        access-token: ${{ secrets.GITHUB_TOKEN }}
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+
+    - name: Git Version
+      id: version
+      uses: codacy/git-version@2.8.0
+
+    - name: Increment project version
+      run: mvn versions:set -DnewVersion=${{ steps.version.outputs.version }}
+
     - run: mvn versions:update-child-modules
-    - uses: stefanzweifel/git-auto-commit-action@v4
+
+    - name: Push tag
+      uses: mathieudutour/github-tag-action@v6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        default_bump: false
+        custom_tag: ${{ steps.version.outputs.version }}
+        tag_prefix: ""
+
+
 
