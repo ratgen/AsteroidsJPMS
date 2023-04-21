@@ -1,17 +1,19 @@
 package dk.sdu.mmmi.cbse.main;
 
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.app.GameSettings;
 
-public class Main {
-	
-	public static void main(String[] args) {
+public class Main extends GameApplication {
 
-		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setTitle("Asteroids");
-		config.setWindowSizeLimits(1000,600,1000,600);
-
-		new Lwjgl3Application(new Game(), config);
+	@Override
+	protected void initSettings(GameSettings settings) {
+		settings.setWidth(800);
+		settings.setHeight(600);
+		settings.setTitle("Basic Game App");
 	}
-	
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 }
