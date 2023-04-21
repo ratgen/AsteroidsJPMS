@@ -24,6 +24,9 @@ jobs:
       id: version
       uses: codacy/git-version@2.8.0
 
+
+
+
     - name: Increment project version
       run: mvn versions:set -DnewVersion=${{ steps.version.outputs.version }}
 
