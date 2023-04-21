@@ -31,3 +31,6 @@ nbactions.xml
 **/.classpath
 **/.settings
 **/.project
+
+*.iml
+/**/*.iml
